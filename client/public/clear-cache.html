@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Clear Cache</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #000;
+      color: #fff;
+      padding: 40px;
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .box {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 30px;
+      margin: 20px 0;
+    }
+
+    button {
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      margin: 10px;
+    }
+
+    button:hover {
+      background: #1d4ed8;
+    }
+
+    .success {
+      color: #22c55e;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>🧹 Clear Browser Cache</h1>
+
+  <div class="box">
+    <h2>Step 1: Clear Storage</h2>
+    <button onclick="clearStorage()">Clear localStorage & sessionStorage</button>
+    <div id="status"></div>
+  </div>
+
+  <div class="box">
+    <h2>Step 2: Hard Refresh</h2>
+    <p>Press <strong>Ctrl + Shift + R</strong> (Windows/Linux)<br>or <strong>Cmd + Shift + R</strong> (Mac)</p>
+    <p style="font-size: 12px; opacity: 0.5;">This forces the browser to reload all JavaScript files</p>
+  </div>
+
+  <div class="box">
+    <h2>Step 3: Go to Admin</h2>
+    <button onclick="window.location.href='/admin'">→ Open Admin Dashboard</button>
+  </div>
+
+  <script>
+    function clearStorage() {
+      try {
+        localStorage.clear();
+        sessionStorage.clear();
+        document.getElementById('status').innerHTML = '<p class="success">✅ Cache cleared successfully!</p>';
+        console.log('✅ localStorage and sessionStorage cleared');
+      } catch (e) {
+        document.getElementById('status').innerHTML = '<p style="color: #ef4444;">❌ Error: ' + e.message + '</p>';
+      }
+    }
+  </script>
+</body>
+
+</html>

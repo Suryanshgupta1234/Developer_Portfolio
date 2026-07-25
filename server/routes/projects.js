@@ -1,0 +1,12 @@
+import express from 'express';
+import { getProjects, getFeatured, getProject, createProject, updateProject, deleteProject } from '../controllers/projectController.js';
+import { protect } from '../middleware/auth.js';
+import upload from '../middleware/upload.js';
+const router = express.Router();
+router.get('/', getProjects);
+router.get('/featured', getFeatured);
+router.get('/:id', getProject);
+router.post('/', protect, upload.single('image'), createProject);
+router.put('/:id', protect, upload.single('image'), updateProject);
+router.delete('/:id', protect, deleteProject);
+export default router;

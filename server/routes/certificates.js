@@ -1,0 +1,10 @@
+import express from 'express';
+import { getCertificates, createCertificate, updateCertificate, deleteCertificate } from '../controllers/certificateController.js';
+import { protect } from '../middleware/auth.js';
+import upload from '../middleware/upload.js';
+const router = express.Router();
+router.get('/', getCertificates);
+router.post('/', protect, upload.single('image'), createCertificate);
+router.put('/:id', protect, upload.single('image'), updateCertificate);
+router.delete('/:id', protect, deleteCertificate);
+export default router;
