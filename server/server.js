@@ -79,8 +79,20 @@ app.use('/api/contact', contactRoutes);
 app.use('/api/chatbot', chatbotRoutes);
 app.use('/api/github', githubRoutes);
 
-// Health check
+// Health check routes
 app.get('/api/health', (req, res) => res.json({ status: 'OK', time: new Date() }));
+app.get('/', (req, res) => res.json({
+  message: 'Portfolio API Server',
+  status: 'running',
+  version: '1.0.0',
+  endpoints: {
+    health: '/api/health',
+    auth: '/api/auth',
+    projects: '/api/projects',
+    blogs: '/api/blogs',
+    skills: '/api/skills',
+  }
+}));
 
 // ── Error Handlers ────────────────────────────────────────────────────────────
 app.use(notFound);
