@@ -38,13 +38,15 @@ app.use(cors({
   origin: (origin, callback) => {
     // Allow any localhost port in development, plus the configured CLIENT_URL
     const allowed = [
-      process.env.CLIENT_URL || 'http://localhost:5173',
+      process.env.CLIENT_URL,
       'http://localhost:5173',
       'http://localhost:5174',
       'http://localhost:5175',
       'http://localhost:5176',
       'http://127.0.0.1:5173',
-    ];
+      'https://developer-portfolio-rho-seven.vercel.app'
+    ].filter(Boolean); // Remove undefined values
+
     if (!origin || allowed.includes(origin)) {
       callback(null, true);
     } else {
