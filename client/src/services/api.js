@@ -1,11 +1,12 @@
 import axios from 'axios';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+// Use production URL if not in development mode
+const API_URL = import.meta.env.DEV
+  ? 'http://localhost:5000/api'
+  : 'https://developer-portfolio-ynn2.onrender.com/api';
 
-// Debug log (only in development)
-if (import.meta.env.DEV) {
-  console.log('🔧 API URL:', API_URL);
-}
+// Debug log
+console.log('🔧 API URL:', API_URL);
 
 // Create axios instance with defaults
 const api = axios.create({
