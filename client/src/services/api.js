@@ -2,6 +2,11 @@ import axios from 'axios';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
+// Debug log (only in development)
+if (import.meta.env.DEV) {
+  console.log('🔧 API URL:', API_URL);
+}
+
 // Create axios instance with defaults
 const api = axios.create({
   baseURL: API_URL,
