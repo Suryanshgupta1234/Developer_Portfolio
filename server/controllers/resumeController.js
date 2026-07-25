@@ -45,3 +45,28 @@ export const uploadResume = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
+
+
+export const setResumeUrl = async (req, res) => {
+  try {
+    const { url } = req.body;
+    if (!url) return res.status(400).json({ message: 'URL is required' });
+
+    // Validate URL format
+    try {
+      new URL(url);
+    } catch {
+      return res.status(400).json({ message: 'Invalid URL format' });
+    }
+
+    let settings = await Settings.findOne();
+    if (!settings) settings = await Settings.create({ resumeUrl: url });
+    else await Settings.findByIdAndUpdate(settings._id, { resumeUrl: url });
+
+    console.log('✅ Resume URL set manually:', url);
+    res.json({ url });
+  } catch (err) {
+    console.error('❌ Set resume URL error:', err.message);
+    res.status(500).json({ message: err.message });
+  }
+};

@@ -141,6 +141,7 @@ export const settingsAPI = {
 export const resumeAPI = {
   get: () => api.get('/resume'),
   upload: (data) => api.post('/resume', data, { headers: { 'Content-Type': 'multipart/form-data' } }),
+  setUrl: (data) => api.post('/resume/url', data),
 };
 
 // ─── Contact ───────────────────────────────────────────────────────────────
