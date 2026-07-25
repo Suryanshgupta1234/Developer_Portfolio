@@ -10,7 +10,7 @@ export default function AdminResume() {
   const [uploading, setUploading] = useState(false);
 
   useEffect(() => {
-    resumeAPI.get().then(r => setCurrent(r.data)).catch(() => {});
+    resumeAPI.get().then(r => setCurrent(r.data)).catch(() => { });
   }, []);
 
   const handleUpload = async () => {
@@ -59,9 +59,9 @@ export default function AdminResume() {
               <div className="flex gap-2">
                 <a href={current.url} target="_blank" rel="noopener noreferrer"
                   className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl border border-white/20 hover:border-white/40 text-white text-sm transition-all hover:bg-white/5">
-                  <Eye size={15} /> Preview
+                  <Eye size={15} /> View
                 </a>
-                <a href={current.url} download
+                <a href={current.url} download="resume.pdf"
                   className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-sm transition-all">
                   <Download size={15} /> Download
                 </a>
